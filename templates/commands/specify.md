@@ -5,6 +5,24 @@ description: "Create a focused specification from context"
 
 Create a specification based on available context and your description.
 
+## Setup
+
+1. Run to ensure spec directory exists:
+```bash
+~/dev/spec-kit/scripts/auto-connect-spec.sh
+```
+
+2. Check if spec.md already exists:
+```bash
+BRANCH=$(git branch --show-current | sed 's/[^a-zA-Z0-9._-]/-/g')
+if [[ -f ".claude/specs/$BRANCH/spec.md" ]]; then
+    echo "❌ ERROR: spec.md already exists!"
+    echo "To remove: rm .claude/specs/$BRANCH/spec.md"
+    exit 1
+fi
+# Safe to write to: .claude/specs/$BRANCH/spec.md
+```
+
 ## Context-Aware Specification
 
 Given your description: `{ARGS}`
@@ -19,10 +37,10 @@ Given your description: `{ARGS}`
    - Reference specific details from context
    - Keep it concise and actionable
 
-3. **Generate specification in `.claude/specs/current-spec.md`**:
+3. **Write specification to `.claude/specs/{branch}/spec.md`**:
    - Clear requirements
    - Success criteria
    - Constraints
    - Questions to resolve
 
-Note: Branch should already be created with your preferred tool (e.g., `bfi`)
+Note: One spec per branch - switching branches switches specs automatically

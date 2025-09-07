@@ -1,25 +1,24 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Install streamlined spec-kit commands
+# Minimal install - just copy command templates
+# Always overwrites to get latest version
 
-echo "Installing Streamlined Spec-Kit..."
+echo "Installing Spec-Kit Commands..."
 
-# Copy commands to Claude directory (overwrites for latest version)
+# Create commands directory if needed
 mkdir -p ~/.claude/commands
+
+# Copy command templates (always overwrite for updates)
 cp -f templates/commands/*.md ~/.claude/commands/
 
-# Copy init script
-mkdir -p ~/.claude/spec-kit
-cp scripts/init.sh ~/.claude/spec-kit/
-chmod +x ~/.claude/spec-kit/init.sh
-
-echo ""
 echo "✅ Installed!"
 echo ""
-echo "Commands available after Claude refresh:"
+echo "Commands available:"
 echo "  /specify - Create specification from context"
-echo "  /plan    - Plan with repo conventions"
+echo "  /plan    - Create implementation plan"
 echo "  /tasks   - Generate executable tasks"
 echo ""
-echo "To init a project: ~/.claude/spec-kit/init.sh"
+echo "Manual tools in spec-kit/scripts/:"
+echo "  __list_specs.sh        - List all branch specs"
+echo "  auto-connect-spec.sh   - Used by commands (automatic)"
