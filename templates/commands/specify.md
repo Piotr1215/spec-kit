@@ -1,17 +1,28 @@
 ---
 name: specify
-description: "Start a new feature by creating a specification and feature branch. This is the first step in the Spec-Driven Development lifecycle."
+description: "Create a focused specification from context"
 ---
 
-Start a new feature by creating a specification and feature branch.
+Create a specification based on available context and your description.
 
-This is the first step in the Spec-Driven Development lifecycle.
+## Context-Aware Specification
 
-Given the feature description provided as an argument, do this:
+Given your description: `{ARGS}`
 
-1. Run the script `scripts/create-new-feature.sh --json "{ARGS}"` from repo root and parse its JSON output for BRANCH_NAME and SPEC_FILE. All file paths must be absolute.
-2. Load `templates/spec-template.md` to understand required sections.
-3. Write the specification to SPEC_FILE using the template structure, replacing placeholders with concrete details derived from the feature description (arguments) while preserving section order and headings.
-4. Report completion with branch name, spec file path, and readiness for the next phase.
+1. **Read existing context**:
+   - Check for Linear issue output (if available)
+   - Look for any provided context or requirements
+   - Identify constraints from conversation
 
-Note: The script creates and checks out the new branch and initializes the spec file before writing.
+2. **Structure the specification**:
+   - Focus on WHAT needs to be done
+   - Reference specific details from context
+   - Keep it concise and actionable
+
+3. **Generate specification in `.claude/specs/current-spec.md`**:
+   - Clear requirements
+   - Success criteria
+   - Constraints
+   - Questions to resolve
+
+Note: Branch should already be created with your preferred tool (e.g., `bfi`)
